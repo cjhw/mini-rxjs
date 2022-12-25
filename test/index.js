@@ -1,22 +1,24 @@
-import { Observable } from '../lib/index.js'
+import { Observable, of, from } from '../lib/index.js'
+// import { of, from } from 'rxjs'
 
-const observable = new Observable((subscribe) => {
-  subscribe.next(1)
-  subscribe.next(2)
-  subscribe.next(3)
-  subscribe.complete()
-})
+const promiseLikeObservable = from(Promise.resolve(4))
 
-const observer = {
+promiseLikeObservable.subscribe({
   next: (value) => {
-    console.log(`next value:`, value)
-  },
-  error: (error) => {
-    console.log(error)
+    console.log(value)
   },
   complete: () => {
     console.log('complete')
   },
-}
+})
 
-observable.subscribe(observer)
+const arrayLikeObservable = of(1, 2, 3)
+
+arrayLikeObservable.subscribe({
+  next: (value) => {
+    console.log(value)
+  },
+  complete: () => {
+    console.log('complete')
+  },
+})
