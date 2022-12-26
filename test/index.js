@@ -9,6 +9,7 @@ import {
   timer,
   interval,
   take,
+  Subject,
 } from '../lib/index.js'
 // import { of, from, map, filter, asyncScheduler } from 'rxjs'
 
@@ -56,4 +57,24 @@ import {
 
 // asyncScheduler.schedule(task, 1000, 0)
 
-interval(1000).pipe(take(5)).subscribe(console.log)
+// interval(1000).pipe(take(5)).subscribe(console.log)
+
+const subject = new Subject()
+
+subject.next(1)
+
+subject.subscribe({
+  next: (value) => {
+    console.log('A', value)
+  },
+})
+
+subject.next(2)
+
+subject.subscribe({
+  next: (value) => {
+    console.log('B', value)
+  },
+})
+
+subject.next(3)
