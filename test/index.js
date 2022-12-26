@@ -8,6 +8,7 @@ import {
   asyncScheduler,
   timer,
   interval,
+  take,
 } from '../lib/index.js'
 // import { of, from, map, filter, asyncScheduler } from 'rxjs'
 
