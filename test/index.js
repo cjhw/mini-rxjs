@@ -6,6 +6,8 @@ import {
   map,
   filter,
   asyncScheduler,
+  timer,
+  interval,
 } from '../lib/index.js'
 // import { of, from, map, filter, asyncScheduler } from 'rxjs'
 
@@ -44,11 +46,13 @@ import {
 //   .pipe(map((val) => val + 1))
 //   .subscribe(console.log)
 
-function task(state) {
-  console.log('state', state)
-  if (state < 5) {
-    this.schedule(state + 1, 1000)
-  }
-}
+// function task(state) {
+//   console.log('state', state)
+//   if (state < 5) {
+//     this.schedule(state + 1, 1000)
+//   }
+// }
 
-asyncScheduler.schedule(task, 1000, 0)
+// asyncScheduler.schedule(task, 1000, 0)
+
+interval(1000).pipe(take(5)).subscribe(console.log)
