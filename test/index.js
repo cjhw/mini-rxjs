@@ -1,5 +1,5 @@
-import { Observable, of, from, fromEvent } from '../lib/index.js'
-// import { of, from } from 'rxjs'
+import { Observable, of, from, fromEvent, map, filter } from '../lib/index.js'
+// import { of, from, map, filter } from 'rxjs'
 
 // const promiseLikeObservable = from(Promise.resolve(4))
 
@@ -23,9 +23,15 @@ import { Observable, of, from, fromEvent } from '../lib/index.js'
 //   },
 // })
 
-const eventObservable = fromEvent(document, 'click')
-const subscriber = eventObservable.subscribe(console.log)
+// const eventObservable = fromEvent(document, 'click')
+// const subscriber = eventObservable.subscribe(console.log)
 
-setTimeout(() => {
-  subscriber.unsubscribe()
-}, 3000)
+// setTimeout(() => {
+//   subscriber.unsubscribe()
+// }, 3000)
+
+of(1, 2, 3)
+  .pipe(map((val) => val * 2))
+  .pipe(filter((val) => val > 3))
+  .pipe(map((val) => val + 1))
+  .subscribe(console.log)
