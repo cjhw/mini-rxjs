@@ -6,19 +6,19 @@ const app = express()
 app.use(morgan('dev'))
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:5173',
     credentials: true,
   })
 )
 app.use(bodyParser.json())
 const users = []
-app.get('api/user/1', (req, res) => {
+app.get('/api/user/1', (req, res) => {
   setTimeout(() => {
     res.json({ name: 'pujie', date: Date.now() })
   }, 3000)
 })
 
-app.get('api/search', (req, res) => {
+app.get('/api/search', (req, res) => {
   const q = req.query.q
   const data = []
   for (let i = 1; i <= 10; i++) {
@@ -34,7 +34,7 @@ app.post('/api/user', (req, res) => {
   res.json(user)
 })
 
-app.delete('api/user/1', (req, res) => {
+app.delete('/api/user/1', (req, res) => {
   res.status(500).json({ message: '删除失败！' })
 })
 
